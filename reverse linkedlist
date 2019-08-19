@@ -1,0 +1,21 @@
+ public ListNode reverseList(ListNode head) {
+        if(head==null) return head;
+        ListNode curr = head, prev = null, next = head.next;
+        while(next!=null){
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            next = next.next;
+        }
+        curr.next = prev;
+        return curr;
+    }
+    
+     public ListNode reverseList(ListNode head) {
+        if(head==null || head.next==null)
+            return head;
+        ListNode p = reverseList(head.next);
+        head.next.next = head;
+        head.next =null;
+        return p;
+    }
