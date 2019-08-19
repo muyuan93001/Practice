@@ -1,0 +1,23 @@
+//Given a string S, we can transform every letter individually to be lowercase or uppercase to create another string.  Return a list of all possible strings we could create.
+
+public List<String> letterCasePermutation(String S) {
+        List<String> res = new ArrayList<>();        
+        backtrack(res, S.toLowerCase().toCharArray(), 0);
+        return res;
+    }
+    
+    public void backtrack(List<String> res, char[] c, int pos){
+        if(pos == c.length){
+            res.add(new String(c));
+            return;
+        }
+        backtrack(res, c, pos+1);
+        if(c[pos] >='a' && c[pos]<='z'){
+            char temp = c[pos];
+            c[pos] = (char)(c[pos] - 'a' + 'A');
+            backtrack(res, c, pos+1);
+            c[pos] = temp;
+            }
+        
+        
+    }
