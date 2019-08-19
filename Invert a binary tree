@@ -1,4 +1,4 @@
-Invert a binary tree.
+// Invert a binary tree.
 
 class Solution {
      public TreeNode invertTree(TreeNode root) {
