@@ -1,0 +1,25 @@
+ //Given a string S, return the "reversed" string where all characters that are not a letter stay in the same place, and all letters reverse their positions.
+ 
+ public String reverseOnlyLetters(String S) {
+        if(S==null || S.length()==0) return S;
+        int start = 0, end = S.length()-1;
+        char[] c = S.toCharArray();
+        while(start < end){
+            while(!Character.isLetter(c[start]) && start < end)
+                start++;
+            while(!Character.isLetter(c[end]) && start < end)
+                end--;
+            if(start >= end)
+                break;
+            swap(c, start, end);
+            start++;
+            end--;
+        }
+        return new String(c);
+    }
+    
+    private void swap(char[] c, int a, int b){
+        char temp = c[a];
+        c[a] = c[b];
+        c[b] = temp;       
+    }
