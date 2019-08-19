@@ -1,0 +1,8 @@
+  // Write a function to delete a node in a singly linked list, given only access to that node.
+  
+  public void deleteNode(ListNode node) {
+            if(node.next == null)
+                throw new IllegalArgumentException("");
+            node.val=node.next.val;
+            node.next=node.next.next;
+    }
