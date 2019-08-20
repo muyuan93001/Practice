@@ -1,0 +1,20 @@
+// Given a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus sum of all keys greater than the original key in BST.
+
+public TreeNode convertBST(TreeNode root) {
+        int sum = 0;
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode head = root;
+        while(root!=null || !s.isEmpty()){
+            while(root!=null){
+                s.push(root);
+                root = root.right;
+            }
+            if(!s.isEmpty()){
+                root = s.pop();
+                root.val = root.val + sum;
+                sum = root.val;
+                root = root.left;
+            }
+        }
+        return head;
+    }
