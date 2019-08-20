@@ -1,0 +1,17 @@
+// Given an array A of integers, we must modify the array in the following way: we choose an i and replace A[i] with -A[i], and we repeat this process K times in total.  (We may choose the same index i multiple times.)
+Return the largest possible sum of the array after modifying it in this way.
+
+ 
+
+ public int largestSumAfterKNegations(int[] A, int K) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for(int i: A)
+            pq.offer(i);
+        for(int remain = K;K >0;K--)
+            pq.offer(pq.poll()*(-1));
+        int sum = 0;
+        while(!pq.isEmpty())
+            sum+=pq.poll();
+        return sum;
+            
+    }
