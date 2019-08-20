@@ -1,0 +1,44 @@
+// In a binary tree, the root node is at depth 0, and children of each depth k node are at depth k+1.
+Two nodes of a binary tree are cousins if they have the same depth, but have different parents.
+We are given the root of a binary tree with unique values, and the values x and y of two different nodes in the tree.
+Return true if and only if the nodes corresponding to the values x and y are cousins.
+ 
+ public boolean isCousins(TreeNode root, int x, int y) {
+        if(root==null) return false;
+        Map<Integer, Integer> depth = new HashMap<>();
+        Map<Integer, Integer> parent = new HashMap<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        depth.put(root.val, 0);
+        int d = 1;
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int i=0;i<size;i++){
+                TreeNode curr = q.poll();
+                if(curr.left!=null){
+                    depth.put(curr.left.val, d);
+                    parent.put(curr.left.val, curr.val);
+                    q.offer(curr.left);                    
+                }
+                if(curr.right!=null){
+                    depth.put(curr.right.val, d);
+                    parent.put(curr.right.val, curr.val);
+                    q.offer(curr.right);                    
+                }
+                                     }
+            d++;
+                             }
+        if(!parent.containsKey(x) || !parent.containsKey(y))
+            return false;
+        else{
+            if(parent.get(x)==parent.get(y))
+                return false;
+            else{
+                if(depth.get(x)==depth.get(y))
+                    return true;
+                else
+                    return false;                
+            }
+            
+        }      
+    }
