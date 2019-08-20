@@ -1,0 +1,20 @@
+  //Given a Binary Search Tree and a target number, return true if there exist two elements in the BST such that their sum is equal to the given target.
+  public boolean findTarget(TreeNode root, int k) {
+        if(root == null) return false;
+        Stack<TreeNode> stack = new Stack<>();
+        Set<Integer> set = new HashSet<>();
+        while(root!=null || !stack.isEmpty()){
+            while(root!=null){
+                stack.push(root);
+                root = root.left;
+            }
+            if(!stack.isEmpty()){
+                root = stack.pop();
+                if(set.contains(k-root.val))
+                    return true;
+                set.add(root.val);
+                root = root.right;
+            }                      
+        }
+         return false;        
+    }
