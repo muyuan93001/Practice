@@ -1,0 +1,22 @@
+//Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
+
+ public int getMinimumDifference(TreeNode root) {
+	         if(root==null) return Integer.MAX_VALUE; 
+	         List<Integer> res = new ArrayList<Integer>();
+	         minHelper(root, res);
+	         int diff=Integer.MAX_VALUE;
+	         for(int i=1;i<res.size();i++) {
+	        	 diff=Math.min(res.get(i)-res.get(i-1), diff);
+	         }
+	         return diff;
+	        
+	    }
+	    
+	    public void minHelper(TreeNode root, List<Integer> res){
+	        if(root==null) return;
+	        else{
+	        minHelper(root.left, res);
+	        res.add(root.val);
+	        minHelper(root.right, res);
+	        }
+	    }
