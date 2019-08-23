@@ -1,0 +1,20 @@
+// Given a collection of distinct integers, return all possible permutations.
+public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        bc(res, nums, new ArrayList<>());
+        return res;
+    }
+    
+    public void bc(List<List<Integer>> res, int[] nums, List<Integer> temp){
+        if(temp.size()==nums.length){
+            res.add(new ArrayList<>(temp));
+            return;
+        }
+        for(int i=0;i<nums.length;i++){
+            if(temp.contains(nums[i])) continue;
+            temp.add(nums[i]);
+            bc(res,nums,temp);
+            temp.remove(temp.size()-1);          
+        }
+        
+    }
