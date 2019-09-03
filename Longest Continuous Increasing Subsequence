@@ -1,0 +1,12 @@
+ //Given an unsorted array of integers, find the length of longest continuous increasing subsequence (subarray).
+ 
+ public int findLengthOfLCIS(int[] nums) {
+        int nLength =0, start =0;
+        for(int i=0;i<nums.length-1;i++){
+            if(nums[i]>=nums[i+1]) {
+                nLength=Math.max(nLength, i - start + 1);
+                start = i+1;
+            }           
+        }
+        return Math.max(nLength, nums.length-start);
+    }
