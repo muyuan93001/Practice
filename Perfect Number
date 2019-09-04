@@ -1,0 +1,22 @@
+//We define the Perfect Number is a positive integer that is equal to the sum of all its positive divisors except itself.
+
+Now, given an integer n, write a function that returns true when it is a perfect number and false when it is not.
+
+
+
+public boolean checkPerfectNumber(int num) {
+        if(num<=2) return false;
+        List<Integer> temp = new ArrayList<>();
+        int limit = (int)Math.sqrt(num);
+        for(int i=2;i<=limit;i++){
+            int factor1 = num/i;
+            if(factor1 * i == num){
+                temp.add(i);
+                temp.add(factor1);
+            }            
+        }
+        int sum = 0;
+        for(int k: temp)
+            sum+=k;
+        return sum+1==num?true: false;
+    }
