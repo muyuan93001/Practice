@@ -1,0 +1,25 @@
+//Given an array A of integers, return true if and only if it is a valid mountain array.
+
+Recall that A is a mountain array if and only if:
+
+A.length >= 3
+There exists some i with 0 < i < A.length - 1 such that:
+A[0] < A[1] < ... A[i-1] < A[i]
+A[i] > A[i+1] > ... > A[A.length - 1]
+
+
+public boolean validMountainArray(int[] A) {
+        int p1 = 1, p2 = A.length-1;
+        for(;p1<A.length;p1++){
+            if(A[p1]<=A[p1-1])
+                break;
+        }
+        for(;p2>0;p2--){
+            if(A[p2]>=A[p2-1])
+                break;
+        }
+        if(p1==A.length || p2 == 0)
+            return false;
+        return p1-1 == p2?true:false;
+        
+    }
